@@ -31,6 +31,7 @@ in {
         pkgs.curl
         pkgs.yarn
         pkgs.gettext
+        pkgs.phpPackages.composer
     ];
 
     process.implementation="process-compose";
