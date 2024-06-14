@@ -53,7 +53,6 @@ in {
               session.gc_probability = 0
               session.save_handler = redis
               session.save_path = "tcp://127.0.0.1:${config.env.DEVENV_REDIS_PORT}/0"
-              assert.active = 0
               opcache.memory_consumption = 256M
               opcache.interned_strings_buffer = 20
               zend.assertions = 0
