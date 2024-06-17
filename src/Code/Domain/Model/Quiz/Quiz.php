@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Code\Domain\Model\Quiz;
 
 use App\Code\Domain\Exception\InvalidUuidException;
+use App\Code\Domain\Exception\Quiz\InvalidQuizException;
 use App\Code\Domain\Exception\ValidationException;
-use App\Code\Domain\Model\Quiz\Exception\InvalidQuizException;
 use App\Code\Domain\Model\Support\Id;
 use App\Code\Domain\Validator\Validator;
 
@@ -53,7 +53,7 @@ readonly class Quiz
             key: 'name',
             value: $this->name,
             message: 'The name must contain between 4 and 255 characters',
-            min: 2,
+            min: 4,
             max: 255
         );
 

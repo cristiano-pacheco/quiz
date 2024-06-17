@@ -73,7 +73,7 @@ readonly class Question
             key: 'question',
             value: $this->question,
             message: 'The question must contain between 4 and 255 characters',
-            min: 10,
+            min: 4,
             max: 500
         );
 

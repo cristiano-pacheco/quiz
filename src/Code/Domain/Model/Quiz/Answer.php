@@ -24,7 +24,7 @@ readonly class Answer
         public string $answer,
         public int $order,
         public BehaviorEnum $behavior,
-        public RestrictionEnum $restrictionEnum,
+        public RestrictionEnum $restriction,
         public ?Id $questionToAskId,
         public ?array $excludedProductIds
     ) {
@@ -39,7 +39,7 @@ readonly class Answer
         string $answer,
         int $order,
         BehaviorEnum $behavior,
-        RestrictionEnum $restrictionEnum,
+        RestrictionEnum $restriction,
         ?string $questionToAskId,
         ?array $excludedProductIds
     ): self {
@@ -68,7 +68,7 @@ readonly class Answer
             answer: $answer,
             order: $order,
             behavior: $behavior,
-            restrictionEnum: $restrictionEnum,
+            restriction: $restriction,
             questionToAskId: $questionToAskIdVo,
             excludedProductIds: $excludedProductIdsVo
         );
@@ -83,7 +83,7 @@ readonly class Answer
         string $answer,
         int $order,
         BehaviorEnum $behavior,
-        RestrictionEnum $restrictionEnum,
+        RestrictionEnum $restriction,
         ?string $questionToAskId,
         ?array $excludedProductIds
     ): self {
@@ -111,7 +111,7 @@ readonly class Answer
             answer: $answer,
             order: $order,
             behavior: $behavior,
-            restrictionEnum: $restrictionEnum,
+            restriction: $restriction,
             questionToAskId: $questionToAskIdVo,
             excludedProductIds: $excludedProductIdsVo
         );
@@ -122,6 +122,22 @@ readonly class Answer
      */
     public function validate(): void
     {
+        if ($this->behavior->value === BehaviorEnum::ASK_QUESTION->value) {
+            Validator::notEmpty(
+                key: 'questionToAskId',
+                value: $this->questionToAskId,
+                message: 'The question to ask id is required',
+            );
+        }
+
+        if ($this->restriction->value === RestrictionEnum::EXCLUDE_PRODUCTS->value) {
+            Validator::notEmpty(
+                key: 'questionToAskId',
+                value: $this->excludedProductIds,
+                message: 'At least one excluded product id is required when the restriction is to exclude products',
+            );
+        }
+
         Validator::minMax(
             key: 'answer',
             value: $this->answer,

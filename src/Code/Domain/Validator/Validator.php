@@ -61,8 +61,10 @@ class Validator
      */
     public static function validate(string $message = 'Validation error'): void
     {
-        if (self::$errors) {
-            throw new ValidationException(message: $message, errors: self::$errors);
+        $errors = self::$errors;
+        self::$errors = [];
+        if ($errors) {
+            throw new ValidationException(message: $message, errors: $errors);
         }
     }
 }

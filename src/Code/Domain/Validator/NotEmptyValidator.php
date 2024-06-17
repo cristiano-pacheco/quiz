@@ -8,6 +8,6 @@ class NotEmptyValidator
 {
     public static function isValid(mixed $value): bool
     {
-        return empty($value);
+        return !empty($value);
     }
 }
