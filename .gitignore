@@ -13,6 +13,7 @@
 .env
 .idea
 reports
+.phpunit.cache
 
 ###> squizlabs/php_codesniffer ###
 /.phpcs-cache
