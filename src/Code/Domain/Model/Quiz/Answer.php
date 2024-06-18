@@ -16,6 +16,7 @@ readonly class Answer
 {
     /**
      * @param Id[] $excludedProductIds
+     * @param Id[] $behaviorAddProductIds
      * @throws InvalidAnswerException
      */
     private function __construct(
@@ -25,8 +26,9 @@ readonly class Answer
         public int $order,
         public BehaviorEnum $behavior,
         public RestrictionEnum $restriction,
-        public ?Id $questionToAskId,
-        public ?array $excludedProductIds
+        public ?Id $questionToAskId = null,
+        public ?array $excludedProductIds = null,
+        public ?array $behaviorAddProductIds = null,
     ) {
         $this->validate();
     }
@@ -40,8 +42,9 @@ readonly class Answer
         int $order,
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
-        ?string $questionToAskId,
-        ?array $excludedProductIds
+        ?string $questionToAskId = null,
+        ?array $excludedProductIds = null,
+        ?array $behaviorAddProductIds = null
     ): self {
         $id = Id::create();
 
@@ -51,12 +54,8 @@ readonly class Answer
             if ($questionToAskId) {
                 $questionToAskIdVo = Id::restore($questionToAskId);
             }
-            $excludedProductIdsVo = null;
-            if ($excludedProductIds) {
-                foreach ($excludedProductIds as $excludedProductId) {
-                    $excludedProductIdsVo[] = Id::restore($excludedProductId);
-                }
-            }
+            $excludedProductIdsVo = static::getProductIds($excludedProductIds);
+            $behaviorAddProductIdsVo = static::getProductIds($behaviorAddProductIds);
         } catch (InvalidUuidException $e) {
             $message = "The Answer is not valid: {$e->getMessage()}";
             throw new InvalidAnswerException($message, $e->getCode(), $e);
@@ -70,7 +69,8 @@ readonly class Answer
             behavior: $behavior,
             restriction: $restriction,
             questionToAskId: $questionToAskIdVo,
-            excludedProductIds: $excludedProductIdsVo
+            excludedProductIds: $excludedProductIdsVo,
+            behaviorAddProductIds: $behaviorAddProductIdsVo
         );
     }
 
@@ -84,8 +84,9 @@ readonly class Answer
         int $order,
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
-        ?string $questionToAskId,
-        ?array $excludedProductIds
+        ?string $questionToAskId = null,
+        ?array $excludedProductIds = null,
+        ?array $behaviorAddProductIds = null
     ): self {
         try {
             $idVo = Id::restore($id);
@@ -94,12 +95,8 @@ readonly class Answer
             if ($questionToAskId) {
                 $questionToAskIdVo = Id::restore($questionToAskId);
             }
-            $excludedProductIdsVo = null;
-            if ($excludedProductIds) {
-                foreach ($excludedProductIds as $excludedProductId) {
-                    $excludedProductIdsVo[] = Id::restore($excludedProductId);
-                }
-            }
+            $excludedProductIdsVo = static::getProductIds($excludedProductIds);
+            $behaviorAddProductIdsVo = static::getProductIds($behaviorAddProductIds);
         } catch (InvalidUuidException $e) {
             $message = "The Answer is not valid: {$e->getMessage()}";
             throw new InvalidAnswerException($message, $e->getCode(), $e);
@@ -113,16 +110,17 @@ readonly class Answer
             behavior: $behavior,
             restriction: $restriction,
             questionToAskId: $questionToAskIdVo,
-            excludedProductIds: $excludedProductIdsVo
+            excludedProductIds: $excludedProductIdsVo,
+            behaviorAddProductIds: $behaviorAddProductIdsVo
         );
     }
 
     /**
      * @throws InvalidAnswerException
      */
-    public function validate(): void
+    private function validate(): void
     {
-        if ($this->behavior->value === BehaviorEnum::ASK_QUESTION->value) {
+        if ($this->behavior === BehaviorEnum::ASK_QUESTION) {
             Validator::notEmpty(
                 key: 'questionToAskId',
                 value: $this->questionToAskId,
@@ -130,9 +128,17 @@ readonly class Answer
             );
         }
 
-        if ($this->restriction->value === RestrictionEnum::EXCLUDE_PRODUCTS->value) {
+        if ($this->behavior === BehaviorEnum::ADD_PRODUCTS) {
             Validator::notEmpty(
-                key: 'questionToAskId',
+                key: 'behaviorProductIds',
+                value: $this->behaviorAddProductIds,
+                message: 'At least one behavior product id is required when the behavior is to add products',
+            );
+        }
+
+        if ($this->restriction === RestrictionEnum::EXCLUDE_PRODUCTS) {
+            Validator::notEmpty(
+                key: 'excludedProductIds',
                 value: $this->excludedProductIds,
                 message: 'At least one excluded product id is required when the restriction is to exclude products',
             );
@@ -157,5 +163,24 @@ readonly class Answer
         } catch (ValidationException $e) {
             throw new InvalidAnswerException("The Answer is not valid", $e->getCode(), $e, $e->getErrors());
         }
+    }
+
+    /**
+     * @return Id[]
+     * @throws InvalidUuidException
+     */
+    private static function getProductIds(?array $productIds): array
+    {
+        $productIdsVo = [];
+
+        if (!$productIds) {
+            return $productIdsVo;
+        }
+
+        foreach ($productIds as $productId) {
+            $productIdsVo[] = Id::restore($productId);
+        }
+
+        return $productIdsVo;
     }
 }
