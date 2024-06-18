@@ -20,6 +20,7 @@ final class Version20240618173257 extends AbstractMigration
             CREATE TABLE `product` (
               `id` uuid NOT NULL,
               `name` varchar(255) NOT NULL,
+              `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
               PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         SQL;

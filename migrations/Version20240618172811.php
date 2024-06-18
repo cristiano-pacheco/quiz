@@ -27,6 +27,7 @@ final class Version20240618172811 extends AbstractMigration
               `question_to_ask` uuid DEFAULT NULL,
               `excluded_product_ids` json DEFAULT NULL,
               `recommended_product_ids` json DEFAULT NULL,
+              `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
               PRIMARY KEY (`id`),
               KEY `answer_FK` (`question_id`),
               CONSTRAINT `answer_FK` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`) ON DELETE CASCADE

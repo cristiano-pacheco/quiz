@@ -21,6 +21,7 @@ final class Version20240618172646 extends AbstractMigration
               `id` uuid NOT NULL,
               `quiz_id` uuid NOT NULL,
               `question` varchar(500) NOT NULL,
+              `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
               PRIMARY KEY (`id`),
               KEY `question_FK` (`quiz_id`),
               CONSTRAINT `question_FK` FOREIGN KEY (`quiz_id`) REFERENCES `quiz` (`id`) ON DELETE CASCADE
