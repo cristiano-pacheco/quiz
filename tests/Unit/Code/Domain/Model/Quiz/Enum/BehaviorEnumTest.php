@@ -14,6 +14,6 @@ final class BehaviorEnumTest extends TestCase
         $this->assertEquals('none', BehaviorEnum::NONE->value);
         $this->assertEquals('exclude_products', BehaviorEnum::EXCLUDE_PRODUCTS->value);
         $this->assertEquals('ask_question', BehaviorEnum::ASK_QUESTION->value);
-        $this->assertEquals('add_products', BehaviorEnum::ADD_PRODUCTS->value);
+        $this->assertEquals('recommend_products', BehaviorEnum::RECOMMEND_PRODUCTS->value);
     }
 }

@@ -9,5 +9,5 @@ enum BehaviorEnum: string
     case NONE = 'none';
     case EXCLUDE_PRODUCTS = 'exclude_products';
     case ASK_QUESTION = 'ask_question';
-    case ADD_PRODUCTS = 'add_products';
+    case RECOMMEND_PRODUCTS = 'recommend_products';
 }
