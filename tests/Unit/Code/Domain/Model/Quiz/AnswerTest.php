@@ -165,7 +165,7 @@ final class AnswerTest extends TestCase
             restriction: $data['restriction'],
             questionToAskId: $data['questionToAskId'],
             excludedProductIds: $data['excludedProductIds'],
-            recommendedProductIds: $data['recommendedProductIds'] ?? null
+            recommendedProductIds: $data['recommendedProductIds'] ?? []
         );
     }
 

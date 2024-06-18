@@ -36,16 +36,22 @@ readonly class ProductRecommendationService
                 return new Output();
             }
 
-            if ($answer->behavior === BehaviorEnum::RECOMMEND_PRODUCTS) {
+            if ($answer->behavior === BehaviorEnum::RECOMMEND_PRODUCTS && $answer->recommendedProductIds) {
                 foreach ($answer->recommendedProductIds as $productId) {
                     $this->productRegistry->add($productId);
                 }
             }
 
-            if ($answer->restriction === RestrictionEnum::EXCLUDE_PRODUCTS) {
-                foreach ($answer->excludedProductIds as $productId) {
-                    $this->productRegistry->remove($productId);
-                }
+            if ($answer->restriction !== RestrictionEnum::EXCLUDE_PRODUCTS) {
+                continue;
+            }
+
+            if (!$answer->excludedProductIds) {
+                continue;
+            }
+
+            foreach ($answer->excludedProductIds as $productId) {
+                $this->productRegistry->remove($productId);
             }
         }
 

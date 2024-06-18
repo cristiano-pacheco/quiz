@@ -15,7 +15,7 @@ class ProductRegistry
     {
     }
 
-    public function get(Id $productId) : ?Id
+    public function get(Id $productId): ?Id
     {
         $productIdString = $productId->value->toString();
         return $this->productIds[$productIdString] ?? null;

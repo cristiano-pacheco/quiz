@@ -21,7 +21,7 @@ class InputValidator
 
         foreach ($input->answers as $answer) {
             if (!$answer instanceof Answer) {
-                $message = sprintf('The answer must be instances of the %s class',  Answer::class);
+                $message = sprintf('The answer must be instances of the %s class', Answer::class);
                 throw new InvalidProductRecommendationInputException($message);
             }
         }

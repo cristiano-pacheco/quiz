@@ -27,8 +27,8 @@ readonly class Answer
         public BehaviorEnum $behavior,
         public RestrictionEnum $restriction,
         public ?Id $questionToAskId = null,
-        public ?array $excludedProductIds = null,
-        public ?array $recommendedProductIds = null,
+        public ?array $excludedProductIds = [],
+        public ?array $recommendedProductIds = [],
     ) {
         $this->validate();
     }
@@ -43,8 +43,8 @@ readonly class Answer
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
         ?string $questionToAskId = null,
-        ?array $excludedProductIds = null,
-        ?array $recommendedProductIds = null
+        ?array $excludedProductIds = [],
+        ?array $recommendedProductIds = []
     ): self {
         $id = Id::create();
 
@@ -54,8 +54,8 @@ readonly class Answer
             if ($questionToAskId) {
                 $questionToAskIdVo = Id::restore($questionToAskId);
             }
-            $excludedProductIdsVo = static::getProductIds($excludedProductIds);
-            $recommendedProductIdsVo = static::getProductIds($recommendedProductIds);
+            $excludedProductIdsVo = self::getProductIds($excludedProductIds);
+            $recommendedProductIdsVo = self::getProductIds($recommendedProductIds);
         } catch (InvalidUuidException $e) {
             $message = "The Answer is not valid: {$e->getMessage()}";
             throw new InvalidAnswerException($message, $e->getCode(), $e);
@@ -85,8 +85,8 @@ readonly class Answer
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
         ?string $questionToAskId = null,
-        ?array $excludedProductIds = null,
-        ?array $recommendedProductIds = null
+        ?array $excludedProductIds = [],
+        ?array $recommendedProductIds = []
     ): self {
         try {
             $idVo = Id::restore($id);
@@ -95,8 +95,8 @@ readonly class Answer
             if ($questionToAskId) {
                 $questionToAskIdVo = Id::restore($questionToAskId);
             }
-            $excludedProductIdsVo = static::getProductIds($excludedProductIds);
-            $recommendedProductIdsVo = static::getProductIds($recommendedProductIds);
+            $excludedProductIdsVo = self::getProductIds($excludedProductIds);
+            $recommendedProductIdsVo = self::getProductIds($recommendedProductIds);
         } catch (InvalidUuidException $e) {
             $message = "The Answer is not valid: {$e->getMessage()}";
             throw new InvalidAnswerException($message, $e->getCode(), $e);
