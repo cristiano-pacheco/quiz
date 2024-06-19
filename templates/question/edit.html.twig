@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <form action="{{ path('question.update', {id: record.id }) }}" method="POST">
+                        <input type="hidden" name="quiz_id" value="{{ quizId }}">
+                        <h5 class="card-header">Edit Question</h5>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="question" class="form-label">Question</label>
+                                <textarea name="question" id="question" class="form-control">{{ record.question }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sort_order" class="form-label">Sort Order</label>
+                                <input type="number" name="sort_order" id="sort_order" class="form-control" value="{{ record.sortOrder }}">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Question List{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="mb-0">Quiz: <a class="text-decoration-none" href="{{ path('quiz.edit', { id: quiz.id }) }}">{{ quiz.name }}</a></h4>
+                            <h4 class="mb-0"><a class="text-decoration-none" href="{{ path('quiz.index') }}">Quiz List</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <h5 class="card-header">Question List</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Question</th>
+                                        <th scope="col">Sort Order</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in records %}
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.question }}</td>
+                                        <td>{{ item.sortOrder }}</td>
+                                        <td>
+                                            <a href="{{ path('question.edit', { id: item.id, quizId: item.quizId }) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ path('question.delete', {id: item.id, quizId: item.quizId }) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('question.create', { quizId: quiz.id }) }}" class="btn btn-primary">Add</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
