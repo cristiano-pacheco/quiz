@@ -23,7 +23,7 @@ readonly class Answer
         public Id $id,
         public Id $questionId,
         public string $answer,
-        public int $order,
+        public int $sortOrder,
         public BehaviorEnum $behavior,
         public RestrictionEnum $restriction,
         public ?Id $questionToAskId = null,
@@ -39,7 +39,7 @@ readonly class Answer
     public static function create(
         string $questionId,
         string $answer,
-        int $order,
+        int $sortOrder,
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
         ?string $questionToAskId = null,
@@ -65,7 +65,7 @@ readonly class Answer
             id: $id,
             questionId: $questionIdVo,
             answer: $answer,
-            order: $order,
+            sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
             questionToAskId: $questionToAskIdVo,
@@ -81,7 +81,7 @@ readonly class Answer
         string $id,
         string $questionId,
         string $answer,
-        int $order,
+        int $sortOrder,
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
         ?string $questionToAskId = null,
@@ -106,7 +106,7 @@ readonly class Answer
             id: $idVo,
             questionId: $questionIdVo,
             answer: $answer,
-            order: $order,
+            sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
             questionToAskId: $questionToAskIdVo,
@@ -153,9 +153,9 @@ readonly class Answer
         );
 
         Validator::positiveNumber(
-            key: 'order',
-            value: $this->order,
-            message: 'The order must be a positive number',
+            key: 'sortOrder',
+            value: $this->sortOrder,
+            message: 'The sort sortOrder must be a positive number',
         );
 
         try {

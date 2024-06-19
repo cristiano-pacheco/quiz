@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Code\Infrastructure\Symfony\Repository\QuizRepository\Query;
 
 use App\Code\Application\Exception\Quiz\CouldNotFindQuizException;
-use App\Code\Application\Exception\Quiz\QuizNotFoundException;
 use App\Code\Domain\Exception\Quiz\InvalidQuizException;
 use App\Code\Domain\Model\Quiz\Quiz;
 use App\Code\Infrastructure\Symfony\Exception\DatabaseException;

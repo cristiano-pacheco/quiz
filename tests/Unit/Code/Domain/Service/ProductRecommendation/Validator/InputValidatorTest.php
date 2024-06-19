@@ -33,7 +33,7 @@ final class InputValidatorTest extends TestCase
         $answer = Answer::Create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: $behavior,
             restriction: $restriction
         );

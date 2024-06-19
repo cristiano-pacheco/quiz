@@ -19,7 +19,7 @@ readonly class Question
         public Id $id,
         public Id $quizId,
         public string $question,
-        public int $order,
+        public int $sortOrder,
     ) {
         $this->validate();
     }
@@ -30,7 +30,7 @@ readonly class Question
     public static function create(
         string $quizId,
         string $question,
-        int $order
+        int $sortOrder
     ): self {
         $id = Id::create();
 
@@ -41,7 +41,7 @@ readonly class Question
             throw new InvalidQuestionException($message, $e->getCode(), $e);
         }
 
-        return new self(id: $id, quizId: $quizId, question: $question, order: $order);
+        return new self(id: $id, quizId: $quizId, question: $question, sortOrder: $sortOrder);
     }
 
     /**
@@ -51,7 +51,7 @@ readonly class Question
         string $id,
         string $quizId,
         string $question,
-        int $order
+        int $sortOrder
     ): self {
         try {
             $idVo = Id::restore($id);
@@ -61,7 +61,7 @@ readonly class Question
             throw new InvalidQuestionException($message, $e->getCode(), $e);
         }
 
-        return new self(id: $idVo, quizId: $quizIdVo, question: $question, order: $order);
+        return new self(id: $idVo, quizId: $quizIdVo, question: $question, sortOrder: $sortOrder);
     }
 
     /**
@@ -78,9 +78,9 @@ readonly class Question
         );
 
         Validator::positiveNumber(
-            key: 'order',
-            value: $this->order,
-            message: 'The order must be a positive number',
+            key: 'sortOrder',
+            value: $this->sortOrder,
+            message: 'The sort sortOrder must be a positive number',
         );
 
         try {

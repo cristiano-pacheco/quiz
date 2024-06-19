@@ -28,7 +28,7 @@ readonly class CreateQuizCommand
         $query->setParameter('name', $quiz->name);
 
         try {
-            $query->executeQuery();
+            $query->executeStatement();
         } catch (Exception $e) {
             throw new DatabaseException('Could not create the quiz: ' . $e->getMessage());
         }

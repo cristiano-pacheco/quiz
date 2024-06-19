@@ -85,7 +85,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerOne = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::EXCLUDE_ALL_PRODUCTS,
             restriction: RestrictionEnum::NONE
         );
@@ -93,7 +93,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerTwo = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::NONE,
             restriction: RestrictionEnum::EXCLUDE_ALL_PRODUCTS
         );
@@ -116,7 +116,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerOne = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::NONE,
             restriction: RestrictionEnum::NONE
         );
@@ -124,7 +124,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerTwo = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::NONE,
             restriction: RestrictionEnum::NONE
         );
@@ -132,7 +132,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerThree = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::RECOMMEND_PRODUCTS,
             restriction: RestrictionEnum::NONE,
             recommendedProductIds: [$recommendedProductId]
@@ -141,7 +141,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerFour = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::RECOMMEND_PRODUCTS,
             restriction: RestrictionEnum::NONE,
             recommendedProductIds: [$recommendedProductIdTwo]
@@ -150,7 +150,7 @@ final class ProductRecommendationServiceTest extends TestCase
         $answerFive = Answer::create(
             questionId: $questionId,
             answer: $answer,
-            order: $order,
+            sortOrder: $order,
             behavior: BehaviorEnum::NONE,
             restriction: RestrictionEnum::EXCLUDE_PRODUCTS,
             excludedProductIds: [$excludedProductId]

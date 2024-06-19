@@ -15,11 +15,11 @@ final class QuestionTest extends TestCase
     {
         $question = 'question?';
         $quizId = 'd1b3b3b3-1b3b-4b3b-8b3b-1b3b3b3b3b3b';
-        $order = 10;
-        $result = Question::create(quizId: $quizId, question: $question, order: $order);
+        $sortOrder = 10;
+        $result = Question::create(quizId: $quizId, question: $question, sortOrder: $sortOrder);
         $this->assertSame($quizId, $result->quizId->value->toString());
         $this->assertSame($question, $result->question);
-        $this->assertSame($order, $result->order);
+        $this->assertSame($sortOrder, $result->sortOrder);
     }
 
     public function testRestoreQuestion(): void
@@ -27,20 +27,20 @@ final class QuestionTest extends TestCase
         $question = 'question?';
         $id = 'd1b3b3b3-1b3b-4b3b-8b3b-1b3b3b3b3b3b';
         $quizId = '39c25bf8-f4a6-46c9-a570-1db3106ce9ed';
-        $order = 10;
-        $result = Question::restore(id: $id, quizId: $quizId, question: $question, order: $order);
+        $sortOrder = 10;
+        $result = Question::restore(id: $id, quizId: $quizId, question: $question, sortOrder: $sortOrder);
         $this->assertSame($id, $result->id->value->toString());
         $this->assertSame($quizId, $result->quizId->value->toString());
         $this->assertSame($question, $result->question);
-        $this->assertSame($order, $result->order);
+        $this->assertSame($sortOrder, $result->sortOrder);
     }
 
     #[DataProvider('validationCreateDataProvider')]
-    public function testCreateValidations(string $quizId, string $question, int $order): void
+    public function testCreateValidations(string $quizId, string $question, int $sortOrder): void
     {
         $exception = InvalidQuestionException::class;
         $this->expectException($exception);
-        Question::create(quizId: $quizId, question: $question, order: $order);
+        Question::create(quizId: $quizId, question: $question, sortOrder: $sortOrder);
     }
 
     public static function validationCreateDataProvider(): array
@@ -60,11 +60,11 @@ final class QuestionTest extends TestCase
     }
 
     #[DataProvider('validationRestoreDataProvider')]
-    public function testRestoreValidations(string $id, string $quizId, string $question, int $order): void
+    public function testRestoreValidations(string $id, string $quizId, string $question, int $sortOrder): void
     {
         $exception = InvalidQuestionException::class;
         $this->expectException($exception);
-        Question::restore(id: $id, quizId: $quizId, question: $question, order: $order);
+        Question::restore(id: $id, quizId: $quizId, question: $question, sortOrder: $sortOrder);
     }
 
     public static function validationRestoreDataProvider(): array

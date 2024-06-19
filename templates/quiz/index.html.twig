@@ -27,6 +27,7 @@
                                         <td>
                                             <a href="{{ path('quiz.edit', { id: item.id }) }}" class="btn btn-sm btn-primary">Edit</a>
                                             <a href="{{ path('quiz.delete', {id: item.id }) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                            <a href="{{ path('question.index', { quizId: item.id }) }}" class="btn btn-sm btn-primary">Questions</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

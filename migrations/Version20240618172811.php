@@ -21,7 +21,7 @@ final class Version20240618172811 extends AbstractMigration
               `id` uuid NOT NULL,
               `question_id` uuid NOT NULL,
               `answer` varchar(255) NOT NULL,
-              `order` int NOT NULL,
+              `sort_order` int NOT NULL,
               `behavior` varchar(32) NOT NULL,
               `restriction` varchar(32) NOT NULL,
               `question_to_ask` uuid DEFAULT NULL,
