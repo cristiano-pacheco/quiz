@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CreateQuizController extends AbstractController
 {
-    #[Route(path: '/quiz/create', name: 'quiz.create', methods: ['GET'])]
+    #[Route(path: '/quiz/create', name: 'quiz.create', methods: [ 'GET' ])]
     public function __invoke(): Response
     {
         return $this->render('quiz/create.html.twig');

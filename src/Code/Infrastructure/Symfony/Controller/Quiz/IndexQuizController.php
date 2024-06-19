@@ -15,10 +15,10 @@ class IndexQuizController extends AbstractController
     {
     }
 
-    #[Route(path: '/quiz', name: 'quiz.index', methods: ['GET'])]
+    #[Route(path: '/quiz', name: 'quiz.index', methods: [ 'GET' ])]
     public function __invoke(): Response
     {
         $output = $this->findQuizListUseCase->execute();
-        return $this->render('quiz/index.html.twig', ['records' => $output->quizList]);
+        return $this->render('quiz/index.html.twig', [ 'records' => $output->quizList ]);
     }
 }

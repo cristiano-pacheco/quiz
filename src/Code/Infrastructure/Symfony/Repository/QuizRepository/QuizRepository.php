@@ -62,7 +62,8 @@ readonly class QuizRepository implements QuizRepositoryInterface
         try {
             $this->updateQuizCommand->execute($quiz);
         } catch (Exception $e) {
-            $message = "Could not update the quiz with id: $quiz->id | reason: {$e->getMessage()}";
+            $id = $quiz->id->value->toString();
+            $message = "Could not update the quiz with id: $id | reason: {$e->getMessage()}";
             throw new CouldNotUpdateQuizException($message, $e->getCode(), $e);
         }
     }
@@ -72,7 +73,8 @@ readonly class QuizRepository implements QuizRepositoryInterface
         try {
             $this->deleteQuizCommand->execute($quiz);
         } catch (Exception $e) {
-            $message = "Could not delete the quiz with id: $quiz->id | reason: {$e->getMessage()}";
+            $id = $quiz->id->value->toString();
+            $message = "Could not delete the quiz with id: $id | reason: {$e->getMessage()}";
             throw new CouldNotDeleteQuizException($message, $e->getCode(), $e);
         }
     }

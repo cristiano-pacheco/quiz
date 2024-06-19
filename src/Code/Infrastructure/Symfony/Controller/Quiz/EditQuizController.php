@@ -19,7 +19,7 @@ class EditQuizController extends AbstractController
     ) {
     }
 
-    #[Route(path: '/quiz/edit/{id}', name: 'quiz.edit', methods: ['GET'])]
+    #[Route(path: '/quiz/edit/{id}', name: 'quiz.edit', methods: [ 'GET' ])]
     public function __invoke(Request $request): Response
     {
         /** @var string $id */
@@ -33,6 +33,6 @@ class EditQuizController extends AbstractController
             return $this->redirectToRoute('quiz.index');
         }
 
-        return $this->render('quiz/edit.html.twig', ['record' => $quiz]);
+        return $this->render('quiz/edit.html.twig', [ 'record' => $quiz ]);
     }
 }

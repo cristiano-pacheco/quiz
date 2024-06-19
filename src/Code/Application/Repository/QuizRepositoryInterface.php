@@ -8,7 +8,6 @@ use App\Code\Application\Exception\Quiz\CouldNotCreateQuizException;
 use App\Code\Application\Exception\Quiz\CouldNotDeleteQuizException;
 use App\Code\Application\Exception\Quiz\CouldNotFindQuizException;
 use App\Code\Application\Exception\Quiz\CouldNotUpdateQuizException;
-use App\Code\Application\Exception\Quiz\QuizNotFoundException;
 use App\Code\Domain\Model\Quiz\Quiz;
 
 interface QuizRepositoryInterface

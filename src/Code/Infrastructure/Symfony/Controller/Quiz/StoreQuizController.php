@@ -18,7 +18,7 @@ class StoreQuizController extends AbstractController
     {
     }
 
-    #[Route(path: '/quiz/store', name: 'quiz.store', methods: ['POST'])]
+    #[Route(path: '/quiz/store', name: 'quiz.store', methods: [ 'POST' ])]
     public function __invoke(Request $request): Response
     {
         /** @var string $name */

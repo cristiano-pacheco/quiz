@@ -18,7 +18,7 @@ class UpdateQuizController extends AbstractController
     {
     }
 
-    #[Route(path: '/quiz/update/{id}', name: 'quiz.update', methods: ['POST'])]
+    #[Route(path: '/quiz/update/{id}', name: 'quiz.update', methods: [ 'POST' ])]
     public function __invoke(Request $request): Response
     {
         /** @var string $id */
@@ -37,7 +37,7 @@ class UpdateQuizController extends AbstractController
                 $errors[] = $error->message;
             }
             $this->addFlash('errors', $errors);
-            return $this->redirectToRoute('quiz.edit', ['id' => $id]);
+            return $this->redirectToRoute('quiz.edit', [ 'id' => $id ]);
         }
 
         return $this->redirectToRoute('quiz.index');

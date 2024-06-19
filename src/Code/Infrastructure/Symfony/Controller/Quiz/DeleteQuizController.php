@@ -17,7 +17,7 @@ class DeleteQuizController extends AbstractController
     {
     }
 
-    #[Route(path: '/quiz/delete/{id}', name: 'quiz.delete', methods: ['GET'])]
+    #[Route(path: '/quiz/delete/{id}', name: 'quiz.delete', methods: [ 'GET' ])]
     public function __invoke(Request $request): Response
     {
         /** @var string $id */
