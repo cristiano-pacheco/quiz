@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz List{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <h5 class="card-header">Quiz List</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">CreatedAt</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for item in records %}
+                                    <tr>
+                                        <td>{{ item.name }}</td>
+                                        <td>{{ item.createdAt }}</td>
+                                        <td>
+                                            <a href="{{ path('quiz.edit', { id: item.id }) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ path('quiz.delete', {id: item.id }) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ path('quiz.create') }}" class="btn btn-primary">Add</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
