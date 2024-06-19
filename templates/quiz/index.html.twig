@@ -3,6 +3,7 @@
 {% block title %}Quiz List{% endblock %}
 
 {% block body %}
+
     <div class="container">
         <div class="row mt-5">
             <div class="col-12">
@@ -13,16 +14,16 @@
                             <table class="table">
                                 <thead class="table-light">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">CreatedAt</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 {% for item in records %}
                                     <tr>
+                                        <td>{{ item.id }}</td>
                                         <td>{{ item.name }}</td>
-                                        <td>{{ item.createdAt }}</td>
                                         <td>
                                             <a href="{{ path('quiz.edit', { id: item.id }) }}" class="btn btn-sm btn-primary">Edit</a>
                                             <a href="{{ path('quiz.delete', {id: item.id }) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
