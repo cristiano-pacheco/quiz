@@ -16,7 +16,7 @@ readonly class FindAnswerListByQuestionIdListUseCase
     public function __construct(
         private AnswerRepositoryInterface $answerRepository,
         private AnswerListToOutputDataMapper $answerListToOutputDataMapper,
-        private InputDataToIdListMapper $inputDataToIdListMapper
+        private InputDataToIdListMapper $inputToIdListMapper
     ) {
     }
 
@@ -26,7 +26,7 @@ readonly class FindAnswerListByQuestionIdListUseCase
      */
     public function execute(array $input): OutputData
     {
-        $questionIdList = $this->inputDataToIdListMapper->map($input);
+        $questionIdList = $this->inputToIdListMapper->map($input);
         $answerList = $this->answerRepository->findAnswerListByQuestionIdList($questionIdList);
         return $this->answerListToOutputDataMapper->map($answerList);
     }

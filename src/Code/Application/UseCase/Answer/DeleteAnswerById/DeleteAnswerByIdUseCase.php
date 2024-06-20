@@ -19,9 +19,9 @@ readonly class DeleteAnswerByIdUseCase
      * @throws CouldNotFindAnswerException
      * @throws CouldNotDeleteAnswerException
      */
-    public function execute(ByIdInputData $inputData): void
+    public function execute(ByIdInputData $input): void
     {
-        $question = $this->answerRepository->findById($inputData->id);
+        $question = $this->answerRepository->findById($input->id);
         $this->answerRepository->delete($question);
     }
 }

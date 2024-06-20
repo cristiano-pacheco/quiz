@@ -9,11 +9,11 @@ use InvalidArgumentException;
 
 class InputDataToIdListMapper
 {
-    public function map(array $inputData): array
+    public function map(array $input): array
     {
         $result = [];
 
-        foreach ($inputData as $input) {
+        foreach ($input as $input) {
             if (!$input instanceof ByIdInputData) {
                 throw new InvalidArgumentException('The input is not an instance of ByIdInputData class');
             }

@@ -21,9 +21,9 @@ readonly class FindQuestionListByQuizIdUseCase
     /**
      * @throws CouldNotFindQuestionException
      */
-    public function execute(ByIdInputData $inputData): OutputData
+    public function execute(ByIdInputData $input): OutputData
     {
-        $QuestionList = $this->questionRepository->findQuestionListByQuizId($inputData->id);
+        $QuestionList = $this->questionRepository->findQuestionListByQuizId($input->id);
         return $this->questionListToOutputDataMapper->map($QuestionList);
     }
 }

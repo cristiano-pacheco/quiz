@@ -19,9 +19,9 @@ readonly class DeleteQuizByIdUseCase
      * @throws CouldNotFindQuizException
      * @throws CouldNotDeleteQuizException
      */
-    public function execute(ByIdInputData $inputData): void
+    public function execute(ByIdInputData $input): void
     {
-        $quiz = $this->quizRepository->findById($inputData->id);
+        $quiz = $this->quizRepository->findById($input->id);
         $this->quizRepository->delete($quiz);
     }
 }

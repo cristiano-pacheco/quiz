@@ -21,9 +21,9 @@ readonly class FindAnswerListByQuestionIdUseCase
     /**
      * @throws CouldNotFindAnswerException
      */
-    public function execute(ByIdInputData $inputData): OutputData
+    public function execute(ByIdInputData $input): OutputData
     {
-        $answerList = $this->answerRepository->findAnswerListByQuestionId($inputData->id);
+        $answerList = $this->answerRepository->findAnswerListByQuestionId($input->id);
         return $this->answerListToOutputDataMapper->map($answerList);
     }
 }

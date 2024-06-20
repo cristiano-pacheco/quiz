@@ -20,7 +20,7 @@ readonly class UpdateAnswerUseCase
     public function __construct(
         private AnswerRepositoryInterface $answerRepository,
         private AnswerToAnswerDataMapper $answerToAnswerDataMapper,
-        private InputDataToAnswerMapper $inputDataToAnswerMapper
+        private InputDataToAnswerMapper $inputToAnswerMapper
     ) {
     }
 
@@ -38,7 +38,7 @@ readonly class UpdateAnswerUseCase
             throw new CouldNotUpdateAnswerException($e->getMessage(), $e->getCode(), $e);
         }
 
-        $answer = $this->inputDataToAnswerMapper->map($input);
+        $answer = $this->inputToAnswerMapper->map($input);
         $this->answerRepository->update($answer);
         return $this->answerToAnswerDataMapper->map($answer);
     }

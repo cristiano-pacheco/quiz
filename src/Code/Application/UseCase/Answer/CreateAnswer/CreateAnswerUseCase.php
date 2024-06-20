@@ -19,7 +19,7 @@ readonly class CreateAnswerUseCase
     public function __construct(
         private AnswerRepositoryInterface $AnswerRepository,
         private AnswerToAnswerDataMapper $answerToAnswerDataMapper,
-        private InputDataToAnswerMapper $inputDataToAnswerMapper
+        private InputDataToAnswerMapper $inputToAnswerMapper
     ) {
     }
 
@@ -31,7 +31,7 @@ readonly class CreateAnswerUseCase
      */
     public function execute(InputData $input): AnswerData
     {
-        $answer = $this->inputDataToAnswerMapper->map($input);
+        $answer = $this->inputToAnswerMapper->map($input);
         $this->AnswerRepository->create($answer);
         return $this->answerToAnswerDataMapper->map($answer);
     }
