@@ -20,7 +20,7 @@ final class AnswerTest extends TestCase
         $sortOrder = 10;
         $behavior = BehaviorEnum::ASK_QUESTION;
         $restriction = RestrictionEnum::EXCLUDE_PRODUCTS;
-        $questionToAskId = '95487563-9894-41a0-97ce-bd83500d1164';
+        $questionIdToAsk = '95487563-9894-41a0-97ce-bd83500d1164';
         $excludedProductIds = ['39c25bf8-f4a6-46c9-a570-1db3106ce9ed'];
 
         $result = Answer::create(
@@ -29,7 +29,7 @@ final class AnswerTest extends TestCase
             sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
-            questionToAskId: $questionToAskId,
+            questionIdToAsk: $questionIdToAsk,
             excludedProductIds: $excludedProductIds
         );
 
@@ -38,7 +38,7 @@ final class AnswerTest extends TestCase
         $this->assertSame($sortOrder, $result->sortOrder);
         $this->assertSame($behavior, $result->behavior);
         $this->assertSame($restriction, $result->restriction);
-        $this->assertSame($questionToAskId, $result->questionToAskId->value->toString());
+        $this->assertSame($questionIdToAsk, $result->questionIdToAsk->value->toString());
 
         $this->assertCount(1, $result->excludedProductIds);
         $this->assertSame($excludedProductIds[0], $result->excludedProductIds[0]->value->toString());
@@ -51,7 +51,7 @@ final class AnswerTest extends TestCase
         $sortOrder = 10;
         $behavior = BehaviorEnum::RECOMMEND_PRODUCTS;
         $restriction = RestrictionEnum::EXCLUDE_PRODUCTS;
-        $questionToAskId = '95487563-9894-41a0-97ce-bd83500d1164';
+        $questionIdToAsk = '95487563-9894-41a0-97ce-bd83500d1164';
         $excludedProductIds = ['39c25bf8-f4a6-46c9-a570-1db3106ce9ed'];
         $recommendProductIds = ['7787d5ed-c7b0-4245-837b-87307b79eb2e'];
 
@@ -61,7 +61,7 @@ final class AnswerTest extends TestCase
             sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
-            questionToAskId: $questionToAskId,
+            questionIdToAsk: $questionIdToAsk,
             excludedProductIds: $excludedProductIds,
             recommendedProductIds: $recommendProductIds
         );
@@ -71,7 +71,7 @@ final class AnswerTest extends TestCase
         $this->assertSame($sortOrder, $result->sortOrder);
         $this->assertSame($behavior, $result->behavior);
         $this->assertSame($restriction, $result->restriction);
-        $this->assertSame($questionToAskId, $result->questionToAskId->value->toString());
+        $this->assertSame($questionIdToAsk, $result->questionIdToAsk->value->toString());
 
         $this->assertCount(1, $result->excludedProductIds);
         $this->assertSame($excludedProductIds[0], $result->excludedProductIds[0]->value->toString());
@@ -88,7 +88,7 @@ final class AnswerTest extends TestCase
         $sortOrder = 10;
         $behavior = BehaviorEnum::ASK_QUESTION;
         $restriction = RestrictionEnum::EXCLUDE_PRODUCTS;
-        $questionToAskId = '95487563-9894-41a0-97ce-bd83500d1164';
+        $questionIdToAsk = '95487563-9894-41a0-97ce-bd83500d1164';
         $excludedProductIds = ['39c25bf8-f4a6-46c9-a570-1db3106ce9ed'];
 
         $result = Answer::restore(
@@ -98,7 +98,7 @@ final class AnswerTest extends TestCase
             sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
-            questionToAskId: $questionToAskId,
+            questionIdToAsk: $questionIdToAsk,
             excludedProductIds: $excludedProductIds
         );
 
@@ -108,7 +108,7 @@ final class AnswerTest extends TestCase
         $this->assertSame($sortOrder, $result->sortOrder);
         $this->assertSame($behavior, $result->behavior);
         $this->assertSame($restriction, $result->restriction);
-        $this->assertSame($questionToAskId, $result->questionToAskId->value->toString());
+        $this->assertSame($questionIdToAsk, $result->questionIdToAsk->value->toString());
 
         $this->assertCount(1, $result->excludedProductIds);
         $this->assertSame($excludedProductIds[0], $result->excludedProductIds[0]->value->toString());
@@ -122,7 +122,7 @@ final class AnswerTest extends TestCase
         $sortOrder = 10;
         $behavior = BehaviorEnum::RECOMMEND_PRODUCTS;
         $restriction = RestrictionEnum::EXCLUDE_PRODUCTS;
-        $questionToAskId = '95487563-9894-41a0-97ce-bd83500d1164';
+        $questionIdToAsk = '95487563-9894-41a0-97ce-bd83500d1164';
         $excludedProductIds = ['39c25bf8-f4a6-46c9-a570-1db3106ce9ed'];
         $recommendedProductIds = ['7787d5ed-c7b0-4245-837b-87307b79eb2e'];
 
@@ -133,7 +133,7 @@ final class AnswerTest extends TestCase
             sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
-            questionToAskId: $questionToAskId,
+            questionIdToAsk: $questionIdToAsk,
             excludedProductIds: $excludedProductIds,
             recommendedProductIds: $recommendedProductIds
         );
@@ -144,7 +144,7 @@ final class AnswerTest extends TestCase
         $this->assertSame($sortOrder, $result->sortOrder);
         $this->assertSame($behavior, $result->behavior);
         $this->assertSame($restriction, $result->restriction);
-        $this->assertSame($questionToAskId, $result->questionToAskId->value->toString());
+        $this->assertSame($questionIdToAsk, $result->questionIdToAsk->value->toString());
 
         $this->assertCount(1, $result->excludedProductIds);
         $this->assertSame($excludedProductIds[0], $result->excludedProductIds[0]->value->toString());
@@ -163,7 +163,7 @@ final class AnswerTest extends TestCase
             sortOrder: $data['sortOrder'],
             behavior: $data['behavior'],
             restriction: $data['restriction'],
-            questionToAskId: $data['questionToAskId'],
+            questionIdToAsk: $data['questionIdToAsk'],
             excludedProductIds: $data['excludedProductIds'],
             recommendedProductIds: $data['recommendedProductIds'] ?? []
         );
@@ -183,7 +183,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 0,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => '',
+                    'questionIdToAsk' => '',
                     'excludedProductIds' => []
                 ],
             ],
@@ -194,7 +194,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 0,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => '',
+                    'questionIdToAsk' => '',
                     'excludedProductIds' => []
                 ],
             ],
@@ -205,7 +205,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 0,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => '',
+                    'questionIdToAsk' => '',
                     'excludedProductIds' => []
                 ],
             ],
@@ -216,7 +216,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 1,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => '',
+                    'questionIdToAsk' => '',
                     'excludedProductIds' => []
                 ],
             ],
@@ -227,7 +227,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => -1,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => '',
+                    'questionIdToAsk' => '',
                     'excludedProductIds' => []
                 ],
             ],
@@ -238,7 +238,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 100,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => 'test',
+                    'questionIdToAsk' => 'test',
                     'excludedProductIds' => []
                 ],
             ],
@@ -249,7 +249,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 100,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => $questionId,
+                    'questionIdToAsk' => $questionId,
                     'excludedProductIds' => [$questionId, 'test']
                 ],
             ],
@@ -260,7 +260,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 100,
                     'behavior' => BehaviorEnum::ASK_QUESTION,
                     'restriction' => RestrictionEnum::NONE,
-                    'questionToAskId' => null,
+                    'questionIdToAsk' => null,
                     'excludedProductIds' => null
                 ],
             ],
@@ -271,7 +271,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 100,
                     'behavior' => BehaviorEnum::NONE,
                     'restriction' => RestrictionEnum::EXCLUDE_PRODUCTS,
-                    'questionToAskId' => null,
+                    'questionIdToAsk' => null,
                     'excludedProductIds' => null
                 ],
             ],
@@ -282,7 +282,7 @@ final class AnswerTest extends TestCase
                     'sortOrder' => 100,
                     'behavior' => BehaviorEnum::RECOMMEND_PRODUCTS,
                     'restriction' => RestrictionEnum::NONE,
-                    'questionToAskId' => null,
+                    'questionIdToAsk' => null,
                     'excludedProductIds' => null,
                     'recommendedProductIds' => null
                 ],

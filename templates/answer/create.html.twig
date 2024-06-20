@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Answer{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <form action="{{ path('answer.store') }}" method="POST">
+                        <input type="hidden" name="question_id" value="{{ questionId }}">
+                        <h5 class="card-header">Create Answer</h5>
+                        <div class="card-body">
+                            <div class="col">
+                                <label for="answer" class="form-label">Answer</label>
+                                <textarea class="form-control" name="answer" id="answer" rows="5"></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="sort_order" class="form-label">Sort Order</label>
+                                <input type="number" name="sort_order" id="sort_order" class="form-control">
+                            </div>
+                            <div class="col">
+                                <label for="answer" class="form-label">Answer</label>
+                                <textarea class="form-control" name="answer" id="answer" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -26,7 +26,7 @@ readonly class Answer
         public int $sortOrder,
         public BehaviorEnum $behavior,
         public RestrictionEnum $restriction,
-        public ?Id $questionToAskId = null,
+        public ?Id $questionIdToAsk = null,
         public ?array $excludedProductIds = [],
         public ?array $recommendedProductIds = [],
     ) {
@@ -42,7 +42,7 @@ readonly class Answer
         int $sortOrder,
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
-        ?string $questionToAskId = null,
+        ?string $questionIdToAsk = null,
         ?array $excludedProductIds = [],
         ?array $recommendedProductIds = []
     ): self {
@@ -50,9 +50,9 @@ readonly class Answer
 
         try {
             $questionIdVo = Id::restore($questionId);
-            $questionToAskIdVo = null;
-            if ($questionToAskId) {
-                $questionToAskIdVo = Id::restore($questionToAskId);
+            $questionIdToAskVo = null;
+            if ($questionIdToAsk) {
+                $questionIdToAskVo = Id::restore($questionIdToAsk);
             }
             $excludedProductIdsVo = self::getProductIds($excludedProductIds);
             $recommendedProductIdsVo = self::getProductIds($recommendedProductIds);
@@ -68,7 +68,7 @@ readonly class Answer
             sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
-            questionToAskId: $questionToAskIdVo,
+            questionIdToAsk: $questionIdToAskVo,
             excludedProductIds: $excludedProductIdsVo,
             recommendedProductIds: $recommendedProductIdsVo
         );
@@ -84,16 +84,16 @@ readonly class Answer
         int $sortOrder,
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
-        ?string $questionToAskId = null,
+        ?string $questionIdToAsk = null,
         ?array $excludedProductIds = [],
         ?array $recommendedProductIds = []
     ): self {
         try {
             $idVo = Id::restore($id);
             $questionIdVo = Id::restore($questionId);
-            $questionToAskIdVo = null;
-            if ($questionToAskId) {
-                $questionToAskIdVo = Id::restore($questionToAskId);
+            $questionIdToAskVo = null;
+            if ($questionIdToAsk) {
+                $questionIdToAskVo = Id::restore($questionIdToAsk);
             }
             $excludedProductIdsVo = self::getProductIds($excludedProductIds);
             $recommendedProductIdsVo = self::getProductIds($recommendedProductIds);
@@ -109,7 +109,7 @@ readonly class Answer
             sortOrder: $sortOrder,
             behavior: $behavior,
             restriction: $restriction,
-            questionToAskId: $questionToAskIdVo,
+            questionIdToAsk: $questionIdToAskVo,
             excludedProductIds: $excludedProductIdsVo,
             recommendedProductIds: $recommendedProductIdsVo
         );
@@ -122,9 +122,9 @@ readonly class Answer
     {
         if ($this->behavior === BehaviorEnum::ASK_QUESTION) {
             Validator::notEmpty(
-                key: 'questionToAskId',
-                value: $this->questionToAskId,
-                message: 'The question to ask id is required',
+                key: 'questionIdToAsk',
+                value: $this->questionIdToAsk,
+                message: 'The question id to ask is required',
             );
         }
 
@@ -155,7 +155,7 @@ readonly class Answer
         Validator::positiveNumber(
             key: 'sortOrder',
             value: $this->sortOrder,
-            message: 'The sort sortOrder must be a positive number',
+            message: 'The sortOrder must be a positive number',
         );
 
         try {
