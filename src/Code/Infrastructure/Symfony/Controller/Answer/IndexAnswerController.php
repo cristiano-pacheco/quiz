@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Code\Infrastructure\Symfony\Controller\Answer;
 
+use App\Code\Application\UseCase\Answer\FindAnswerListByQuestionId\FindAnswerListByQuestionIdUseCase;
 use App\Code\Application\UseCase\Data\ByIdInputData;
 use App\Code\Application\UseCase\Question\FindQuestionById\FindQuestionByIdUseCase;
-use App\Code\Application\UseCase\Question\FindQuestionListByQuizId\FindAnswerListByQuestionIdUseCase;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

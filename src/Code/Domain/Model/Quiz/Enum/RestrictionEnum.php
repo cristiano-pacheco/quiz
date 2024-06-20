@@ -34,16 +34,16 @@ enum RestrictionEnum: string
         return [
             [
                 'value' => self::NONE->value,
-                'label' => 'None'
+                'label' => 'None',
             ],
             [
                 'value' => self::EXCLUDE_ALL_PRODUCTS->value,
-                'label' => 'Exclude all products'
+                'label' => 'Exclude all products',
             ],
             [
                 'value' => self::EXCLUDE_PRODUCTS->value,
-                'label' => 'Exclude products'
-            ]
+                'label' => 'Exclude products',
+            ],
         ];
     }
 }

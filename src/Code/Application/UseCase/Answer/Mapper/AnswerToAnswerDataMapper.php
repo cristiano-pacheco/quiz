@@ -17,7 +17,7 @@ class AnswerToAnswerDataMapper
 
         return new AnswerData(
             id: $answer->id->value->toString(),
-            questionId: $answer->id->value->toString(),
+            questionId: $answer->questionId->value->toString(),
             answer: $answer->answer,
             sortOrder: $answer->sortOrder,
             behavior: $answer->behavior->value,

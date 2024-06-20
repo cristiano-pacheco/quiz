@@ -13,15 +13,28 @@ class StoreAnswerInputMapper
     {
         $payload = $request->getPayload()->all();
 
+        $excludedProductIds = $this->getIds('excluded_product_id', $payload);
+        $recommendedProductIds = $this->getIds('recommended_product_id', $payload);
+
         return new InputData(
-            questionId: $payload['questionId'] ?? '',
+            questionId: $payload['question_id'] ?? '',
             answer: $payload['answer'] ?? '',
             sortOrder: (int)($payload['sort_order'] ?? ''),
             behavior: $payload['behavior'] ?? '',
             restriction: $payload['restriction'] ?? '',
             questionIdToAsk: $payload['question_id_to_ask'] ?? '',
-            excludedProductIds: $payload['excluded_product_ids'] ?? [],
-            recommendedProductIds: $payload['recommended_product_ids'] ?? [],
+            excludedProductIds: $excludedProductIds,
+            recommendedProductIds: $recommendedProductIds,
         );
+    }
+
+    private function getIds(string $key, array $data): array
+    {
+        $ids = [];
+        $id = $data[$key] ?? [];
+        if ($id) {
+            $ids[] = $id;
+        }
+        return $ids;
     }
 }

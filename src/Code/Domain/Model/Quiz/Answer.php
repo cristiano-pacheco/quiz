@@ -27,8 +27,8 @@ readonly class Answer
         public BehaviorEnum $behavior,
         public RestrictionEnum $restriction,
         public ?Id $questionIdToAsk = null,
-        public ?array $excludedProductIds = [],
-        public ?array $recommendedProductIds = [],
+        public array $excludedProductIds = [],
+        public array $recommendedProductIds = [],
     ) {
         $this->validate();
     }
@@ -43,10 +43,22 @@ readonly class Answer
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
         ?string $questionIdToAsk = null,
-        ?array $excludedProductIds = [],
-        ?array $recommendedProductIds = []
+        array $excludedProductIds = [],
+        array $recommendedProductIds = []
     ): self {
         $id = Id::create();
+
+        if ($excludedProductIds && $restriction !== RestrictionEnum::EXCLUDE_PRODUCTS) {
+            $excludedProductIds = [];
+        }
+
+        if ($recommendedProductIds && $behavior !== BehaviorEnum::RECOMMEND_PRODUCTS) {
+            $recommendedProductIds = [];
+        }
+
+        if ($questionIdToAsk && $behavior !== BehaviorEnum::ASK_QUESTION) {
+            $questionIdToAsk = null;
+        }
 
         try {
             $questionIdVo = Id::restore($questionId);
@@ -85,9 +97,21 @@ readonly class Answer
         BehaviorEnum $behavior,
         RestrictionEnum $restriction,
         ?string $questionIdToAsk = null,
-        ?array $excludedProductIds = [],
-        ?array $recommendedProductIds = []
+        array $excludedProductIds = [],
+        array $recommendedProductIds = []
     ): self {
+        if ($excludedProductIds && $restriction !== RestrictionEnum::EXCLUDE_PRODUCTS) {
+            $excludedProductIds = [];
+        }
+
+        if ($recommendedProductIds && $behavior !== BehaviorEnum::RECOMMEND_PRODUCTS) {
+            $recommendedProductIds = [];
+        }
+
+        if ($questionIdToAsk && $behavior !== BehaviorEnum::ASK_QUESTION) {
+            $questionIdToAsk = null;
+        }
+
         try {
             $idVo = Id::restore($id);
             $questionIdVo = Id::restore($questionId);
@@ -169,7 +193,7 @@ readonly class Answer
      * @return Id[]
      * @throws InvalidUuidException
      */
-    private static function getProductIds(?array $productIds): array
+    private static function getProductIds(array $productIds): array
     {
         $productIdsVo = [];
 

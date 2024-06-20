@@ -7,21 +7,73 @@
         <div class="row mt-5">
             <div class="col-12">
                 <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="mb-0">Question: <a class="text-decoration-none" href="{{ path('question.edit', { quizId: question.quizId, id: question.id }) }}">{{ question.question }}</a></h4>
+                            <h4 class="mb-0"><a class="text-decoration-none" href="{{ path('answer.index', { questionId: question.id }) }}">Answer List</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
                     <form action="{{ path('answer.store') }}" method="POST">
-                        <input type="hidden" name="question_id" value="{{ questionId }}">
+                        <input type="hidden" name="quiz_id" value="{{ question.quizId }}">
+                        <input type="hidden" name="question_id" value="{{ question.id }}">
                         <h5 class="card-header">Create Answer</h5>
                         <div class="card-body">
                             <div class="col">
                                 <label for="answer" class="form-label">Answer</label>
-                                <textarea class="form-control" name="answer" id="answer" rows="5"></textarea>
+                                <textarea class="form-control" name="answer" id="answer" rows="2"></textarea>
                             </div>
-                            <div class="col">
+                            <div class="col mt-2">
                                 <label for="sort_order" class="form-label">Sort Order</label>
                                 <input type="number" name="sort_order" id="sort_order" class="form-control">
                             </div>
-                            <div class="col">
-                                <label for="answer" class="form-label">Answer</label>
-                                <textarea class="form-control" name="answer" id="answer" rows="5"></textarea>
+                            <div class="col mt-2">
+                                <label for="behavior" class="form-label">Behavior</label>
+                                <select class="form-select" name="behavior" id="behavior">
+                                    {% for behavior in behaviorList %}
+                                        <option value="{{ behavior.value }}">{{ behavior.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="question_id_to_ask" class="form-label">Question to ask</label>
+                                <select class="form-select" name="question_id_to_ask" id="question_id_to_ask">
+                                    <option value="" selected></option>
+                                    {% for question in questionList %}
+                                        <option value="{{ question.id }}">{{ question.question|u.truncate(80, '...') }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="recommended_product_id" class="form-label">Product to recommend</label>
+                                <select class="form-select" name="recommended_product_id" id="recommended_product_id">
+                                    <option value="" selected></option>
+                                    {% for product in productList %}
+                                        <option value="{{ product.id }}">{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="restriction" class="form-label">Restriction</label>
+                                <select class="form-select" name="restriction" id="restriction">
+                                    {% for restriction in restrictionList %}
+                                        <option value="{{ restriction.value }}">{{ restriction.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="excluded_product_id" class="form-label">Product to exclude</label>
+                                <select class="form-select" name="excluded_product_id" id="excluded_product_id">
+                                    <option value="" selected></option>
+                                    {% for product in productList %}
+                                        <option value="{{ product.id }}">{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -32,4 +84,5 @@
             </div>
         </div>
     </div>
+    {% include 'answer/partials/show.hide.dynamic.fields.html.twig' %}
 {% endblock %}

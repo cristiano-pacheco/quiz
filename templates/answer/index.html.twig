@@ -9,8 +9,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h4 class="mb-0">Question: <a class="text-decoration-none" href="{{ path('question.edit', { id: question.id }) }}">{{ question.question }}</a></h4>
-                            <h4 class="mb-0"><a class="text-decoration-none" href="{{ path('question.index', { id: question.quizId })) }}">Question List</a></h4>
+                            <h4 class="mb-0">Question: <a class="text-decoration-none" href="{{ path('question.edit', { quizId: question.quizId, id: question.id }) }}">{{ question.question }}</a></h4>
+                            <h4 class="mb-0"><a class="text-decoration-none" href="{{ path('question.index', { quizId: question.quizId }) }}">Question List</a></h4>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                                         <td>{{ item.behavior }}</td>
                                         <td>{{ item.restriction }}</td>
                                         <td>
-                                            <a href="{{ path('answer.edit', { id: item.id, questionId: item.questionId }) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            <a href="{{ path('answer.edit', { id: item.id, quizId: question.quizId, questionId: item.questionId }) }}" class="btn btn-sm btn-primary">Edit</a>
                                             <a href="{{ path('answer.delete', {id: item.id, questionId: item.questionId }) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ path('answer.create', { questionId: question.id }) }}" class="btn btn-primary">Add</a>
+                        <a href="{{ path('answer.create', { quizId: question.quizId, questionId: question.id }) }}" class="btn btn-primary">Add</a>
                     </div>
                 </div>
             </div>

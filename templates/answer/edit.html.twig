@@ -1,23 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Question{% endblock %}
+{% block title %}Answer{% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="row mt-5">
             <div class="col-12">
                 <div class="card">
-                    <form action="{{ path('question.update', {id: record.id }) }}" method="POST">
-                        <input type="hidden" name="quiz_id" value="{{ quizId }}">
-                        <h5 class="card-header">Edit Question</h5>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="mb-0">Question: <a class="text-decoration-none" href="{{ path('question.edit', { quizId: question.quizId, id: question.id }) }}">{{ question.question }}</a></h4>
+                            <h4 class="mb-0"><a class="text-decoration-none" href="{{ path('answer.index', { questionId: question.id }) }}">Answer List</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <form action="{{ path('answer.update', { id: record.id }) }}" method="POST">
+                        <input type="hidden" name="quiz_id" value="{{ question.quizId }}">
+                        <input type="hidden" name="question_id" value="{{ question.id }}">
+                        <h5 class="card-header">Edit Answer</h5>
                         <div class="card-body">
-                            <div class="mb-3">
-                                <label for="question" class="form-label">Question</label>
-                                <textarea name="question" id="question" class="form-control">{{ record.question }}</textarea>
+                            <div class="col">
+                                <label for="answer" class="form-label">Answer</label>
+                                <textarea class="form-control" name="answer" id="answer" rows="2">{{ record.answer }}</textarea>
                             </div>
-                            <div class="mb-3">
+                            <div class="col mt-2">
                                 <label for="sort_order" class="form-label">Sort Order</label>
                                 <input type="number" name="sort_order" id="sort_order" class="form-control" value="{{ record.sortOrder }}">
+                            </div>
+                            <div class="col mt-2">
+                                <label for="behavior" class="form-label">Behavior</label>
+                                <select class="form-select" name="behavior" id="behavior">
+                                    {% for behavior in behaviorList %}
+                                        <option value="{{ behavior.value }}" {% if record.behavior == behavior.value %} selected {% endif %}> {{ behavior.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="question_id_to_ask" class="form-label">Question to ask</label>
+                                <select class="form-select" name="question_id_to_ask" id="question_id_to_ask">
+                                    <option value="" {% if record.questionIdToAsk != question.id %} selected {% endif %}></option>
+                                    {% for question in questionList %}
+                                        <option value="{{ question.id }}" {% if record.questionIdToAsk == question.id %} selected {% endif %}>{{ question.question|u.truncate(80, '...') }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="recommended_product_id" class="form-label">Product to recommend</label>
+                                <select class="form-select" name="recommended_product_id" id="recommended_product_id">
+                                    {% for product in productList %}
+                                        <option value="{{ product.id }}" {% if record.recommendedProductIds and record.recommendedProductIds[0] == product.id %} selected {% endif %}>{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="restriction" class="form-label">Restriction</label>
+                                <select class="form-select" name="restriction" id="restriction">
+                                    {% for restriction in restrictionList %}
+                                        <option value="{{ restriction.value }}" {% if record.restriction == restriction.value %} selected {% endif %}>{{ restriction.label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col mt-2">
+                                <label for="excluded_product_id" class="form-label">Product to exclude</label>
+                                <select class="form-select" name="excluded_product_id" id="excluded_product_id">
+                                    {% for product in productList %}
+                                        <option value="{{ product.id }}" {% if record.excludedProductIds and record.excludedProductIds[0] == product.id %} selected {% endif %}>{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -28,4 +82,5 @@
             </div>
         </div>
     </div>
+    {% include 'answer/partials/show.hide.dynamic.fields.html.twig' %}
 {% endblock %}

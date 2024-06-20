@@ -1,0 +1,48 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const behaviorSelect = document.getElementById('behavior');
+        const restrictionSelect = document.getElementById('restriction');
+        const questionToAskField = document.getElementById('question_id_to_ask');
+        const recommendedProductField = document.getElementById('recommended_product_id');
+        const excludedProductField = document.getElementById('excluded_product_id');
+
+        function updateBehaviorFieldsVisibility() {
+            if (behaviorSelect.value === 'ask_question') {
+                showElement(questionToAskField);
+            } else {
+                hideElement(questionToAskField);
+            }
+
+            if (behaviorSelect.value === 'recommend_products') {
+                showElement(recommendedProductField);
+            } else {
+                hideElement(recommendedProductField);
+            }
+        }
+
+        function updateRestrictionFieldsVisibility() {
+            if (restrictionSelect.value === 'exclude_products') {
+                showElement(excludedProductField);
+            } else {
+                hideElement(excludedProductField);
+            }
+        }
+
+        // Attach event listeners to select fields
+        behaviorSelect.addEventListener('change', updateBehaviorFieldsVisibility);
+        restrictionSelect.addEventListener('change', updateRestrictionFieldsVisibility);
+
+        updateBehaviorFieldsVisibility();
+        updateRestrictionFieldsVisibility();
+    });
+
+    function showElement(element) {
+        element.style.display = 'block';
+        element.previousElementSibling.style.display = 'block';
+    }
+
+    function hideElement(element) {
+        element.style.display = 'none';
+        element.previousElementSibling.style.display = 'none';
+    }
+</script>

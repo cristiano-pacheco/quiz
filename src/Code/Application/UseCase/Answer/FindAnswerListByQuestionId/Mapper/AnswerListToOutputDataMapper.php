@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Code\Application\UseCase\Answer\FindAnswerListByQuizId\Mapper;
+namespace App\Code\Application\UseCase\Answer\FindAnswerListByQuestionId\Mapper;
 
-use App\Code\Application\UseCase\Answer\FindAnswerListByQuizId\Data\OutputData;
+use App\Code\Application\UseCase\Answer\FindAnswerListByQuestionId\Data\OutputData;
 use App\Code\Application\UseCase\Answer\Mapper\AnswerToAnswerDataMapper;
 use App\Code\Domain\Model\Quiz\Answer;
 

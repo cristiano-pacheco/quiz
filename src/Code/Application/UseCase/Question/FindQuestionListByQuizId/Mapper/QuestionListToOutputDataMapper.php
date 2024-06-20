@@ -24,7 +24,8 @@ readonly class QuestionListToOutputDataMapper
             if (!$question instanceof Question) {
                 throw new \InvalidArgumentException('Invalid question list');
             }
-            $questionList[] = $this->questionToQuestionDataMapper->map($question);
+            $question = $this->questionToQuestionDataMapper->map($question);
+            $questionList[$question->id] = $question;
         }
         return new OutputData($questionList);
     }

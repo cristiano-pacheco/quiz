@@ -35,20 +35,20 @@ enum BehaviorEnum: string
         return [
             [
                 'value' => self::NONE->value,
-                'label' => 'None'
+                'label' => 'None',
             ],
             [
                 'value' => self::EXCLUDE_ALL_PRODUCTS->value,
-                'label' => 'Exclude all products'
+                'label' => 'Exclude all products',
             ],
             [
                 'value' => self::ASK_QUESTION->value,
-                'label' => 'Ask question'
+                'label' => 'Ask question',
             ],
             [
                 'value' => self::RECOMMEND_PRODUCTS->value,
-                'label' => 'Recommend products'
-            ]
+                'label' => 'Recommend products',
+            ],
         ];
     }
 }

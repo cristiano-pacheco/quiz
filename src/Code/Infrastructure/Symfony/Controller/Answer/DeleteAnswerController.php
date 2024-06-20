@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Code\Infrastructure\Symfony\Controller\Answer;
 
-use App\Code\Application\UseCase\Data\ByIdInputData;
 use App\Code\Application\UseCase\Answer\DeleteAnswerById\DeleteAnswerByIdUseCase;
+use App\Code\Application\UseCase\Data\ByIdInputData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
