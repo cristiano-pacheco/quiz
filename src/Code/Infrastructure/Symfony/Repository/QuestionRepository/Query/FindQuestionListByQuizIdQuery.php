@@ -31,6 +31,7 @@ readonly class FindQuestionListByQuizIdQuery
         $query->select('*');
         $query->from('question');
         $query->where('quiz_id = :quiz_id');
+        $query->orderBy('sort_order', 'ASC');
         $query->setParameter('quiz_id', $quizId);
 
         try {

@@ -14,6 +14,7 @@ use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Command\CreateAn
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Command\DeleteAnswerCommand;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Command\UpdateAnswerCommand;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerByIdQuery;
+use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerListByQuestionIdListQuery;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerListByQuestionIdQuery;
 use Exception;
 
@@ -24,7 +25,8 @@ readonly class AnswerRepository implements AnswerRepositoryInterface
         private UpdateAnswerCommand $updateAnswerCommand,
         private DeleteAnswerCommand $deleteAnswerCommand,
         private FindAnswerByIdQuery $findAnswerByIdQuery,
-        private FindAnswerListByQuestionIdQuery $findAnswerListByQuestionIdIdQuery
+        private FindAnswerListByQuestionIdQuery $findAnswerListByQuestionIdIdQuery,
+        private FindAnswerListByQuestionIdListQuery $findAnswerListByQuestionIdListQuery
     ) {
     }
 
@@ -76,6 +78,16 @@ readonly class AnswerRepository implements AnswerRepositoryInterface
             $id = $answer->id->value->toString();
             $message = "Could not delete the Answer with id: $id | reason: {$e->getMessage()}";
             throw new CouldNotDeleteAnswerException($message, $e->getCode(), $e);
+        }
+    }
+
+    public function findAnswerListByQuestionIdList(array $questionIdList): array
+    {
+        try {
+            return $this->findAnswerListByQuestionIdListQuery->execute($questionIdList);
+        } catch (Exception $e) {
+            $message = "Could not find the Answer list | reason: {$e->getMessage()}";
+            throw new CouldNotFindAnswerException($message, $e->getCode(), $e);
         }
     }
 }

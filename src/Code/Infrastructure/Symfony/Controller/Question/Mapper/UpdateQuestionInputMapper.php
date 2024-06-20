@@ -12,9 +12,11 @@ class UpdateQuestionInputMapper
     public function map(Request $request): InputData
     {
         $payload = $request->getPayload()->all();
+        /** @var string $id */
+        $id = $request->get('id', '');
 
         return new InputData(
-            id: $payload['id'] ?? '',
+            id: $id,
             quizId: $payload['quiz_id'] ?? '',
             question: $payload['question'] ?? '',
             sortOrder: (int)($payload['sort_order'] ?? ''),

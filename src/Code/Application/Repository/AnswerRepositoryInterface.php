@@ -37,4 +37,11 @@ interface AnswerRepositoryInterface
      * @throws CouldNotDeleteAnswerException
      */
     public function delete(Answer $answer): void;
+
+    /**
+     * @param string[] $questionIdList
+     * @return Answer[]
+     * @throws CouldNotFindAnswerException
+     */
+    public function findAnswerListByQuestionIdList(array $questionIdList): array;
 }
