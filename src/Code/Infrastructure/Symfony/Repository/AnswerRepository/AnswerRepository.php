@@ -14,6 +14,7 @@ use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Command\CreateAn
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Command\DeleteAnswerCommand;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Command\UpdateAnswerCommand;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerByIdQuery;
+use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerListByAnswerIdListQuery;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerListByQuestionIdListQuery;
 use App\Code\Infrastructure\Symfony\Repository\AnswerRepository\Query\FindAnswerListByQuestionIdQuery;
 use Exception;
@@ -26,7 +27,8 @@ readonly class AnswerRepository implements AnswerRepositoryInterface
         private DeleteAnswerCommand $deleteAnswerCommand,
         private FindAnswerByIdQuery $findAnswerByIdQuery,
         private FindAnswerListByQuestionIdQuery $findAnswerListByQuestionIdIdQuery,
-        private FindAnswerListByQuestionIdListQuery $findAnswerListByQuestionIdListQuery
+        private FindAnswerListByQuestionIdListQuery $findAnswerListByQuestionIdListQuery,
+        private FindAnswerListByAnswerIdListQuery $findAnswerListByAnswerIdListQuery
     ) {
     }
 
@@ -85,6 +87,17 @@ readonly class AnswerRepository implements AnswerRepositoryInterface
     {
         try {
             return $this->findAnswerListByQuestionIdListQuery->execute($questionIdList);
+        } catch (Exception $e) {
+            $message = "Could not find the Answer list | reason: {$e->getMessage()}";
+            throw new CouldNotFindAnswerException($message, $e->getCode(), $e);
+        }
+    }
+
+
+    public function findAnswerListByAnswerIdList(array $answerIdList): array
+    {
+        try {
+            return $this->findAnswerListByAnswerIdListQuery->execute($answerIdList);
         } catch (Exception $e) {
             $message = "Could not find the Answer list | reason: {$e->getMessage()}";
             throw new CouldNotFindAnswerException($message, $e->getCode(), $e);

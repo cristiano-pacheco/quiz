@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Code\Application\UseCase\Answer\FindAnswerListByQuestionIdList\Mapper;
+namespace App\Code\Application\UseCase\Answer\FindAnswerListByAnswerIdList\Mapper;
 
 use App\Code\Application\UseCase\Data\ByIdInputData;
 use InvalidArgumentException;

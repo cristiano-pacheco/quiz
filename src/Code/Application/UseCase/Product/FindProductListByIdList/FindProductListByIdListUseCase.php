@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Code\Application\UseCase\Product\FindProductList;
+namespace App\Code\Application\UseCase\Product\FindProductListByIdList;
 
 use App\Code\Application\Exception\Product\CouldNotFindProductException;
 use App\Code\Application\Repository\ProductRepositoryInterface;
 use App\Code\Application\UseCase\Product\Data\OutputData;
 use App\Code\Application\UseCase\Product\Mapper\ProductToOutputDataMapper;
 
-readonly class FindProductListUseCase
+readonly class FindProductListByIdListUseCase
 {
     public function __construct(
         private ProductRepositoryInterface $productRepository,
@@ -18,11 +18,12 @@ readonly class FindProductListUseCase
     }
 
     /**
+     * @param string[] $productIdList
      * @throws CouldNotFindProductException
      */
-    public function execute(): OutputData
+    public function execute(array $productIdList): OutputData
     {
-        $quizList = $this->productRepository->findAll();
+        $quizList = $this->productRepository->findByIdList($productIdList);
         return $this->productToOutputDataMapper->map($quizList);
     }
 }

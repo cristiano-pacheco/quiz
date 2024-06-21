@@ -44,4 +44,11 @@ interface AnswerRepositoryInterface
      * @throws CouldNotFindAnswerException
      */
     public function findAnswerListByQuestionIdList(array $questionIdList): array;
+
+    /**
+     * @param string[] $answerIdList
+     * @return Answer[]
+     * @throws CouldNotFindAnswerException
+     */
+    public function findAnswerListByAnswerIdList(array $answerIdList): array;
 }

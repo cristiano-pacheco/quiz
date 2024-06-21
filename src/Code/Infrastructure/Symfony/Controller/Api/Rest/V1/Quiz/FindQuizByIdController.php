@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Code\Infrastructure\Symfony\Controller\Quiz\Api\Rest\V1\Quiz;
+namespace App\Code\Infrastructure\Symfony\Controller\Api\Rest\V1\Quiz;
 
 use App\Code\Application\Exception\Answer\CouldNotFindAnswerException;
 use App\Code\Application\Exception\Question\CouldNotFindQuestionException;

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Code\Application\UseCase\Product\FindProductList\Mapper;
+namespace App\Code\Application\UseCase\Product\Mapper;
 
-use App\Code\Application\UseCase\Product\FindProductList\Data\OutputData;
-use App\Code\Application\UseCase\Product\Mapper\ProductToProductDataMapper;
+use App\Code\Application\UseCase\Product\Data\OutputData;
 use App\Code\Domain\Model\Catalog\Product;
 
 readonly class ProductToOutputDataMapper

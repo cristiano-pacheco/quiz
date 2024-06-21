@@ -14,4 +14,12 @@ interface ProductRepositoryInterface
      * @throws CouldNotFindProductException
      */
     public function findAll(): array;
+
+    /**
+     * @param string[] $idList
+     * @return Product[]
+     * @throws CouldNotFindProductException
+     * /
+     */
+    public function findByIdList(array $idList): array;
 }
