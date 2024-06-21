@@ -494,4 +494,21 @@ curl --location 'http://quiz.rooter.test/api/rest/v1/product-suggestions/by-answ
 }'
 ```
 
+Response of the products suggestion:
+
+```json
+{
+    "productList": {
+        "57a5a136-2e70-11ef-bbee-aad777547dee": {
+            "id": "57a5a136-2e70-11ef-bbee-aad777547dee",
+            "name": "Sildenafil 50mg"
+        },
+        "57a5b20c-2e70-11ef-bbee-aad777547dee": {
+            "id": "57a5b20c-2e70-11ef-bbee-aad777547dee",
+            "name": "Sildenafil 100mg"
+        }
+    }
+}
+```
+
 
