@@ -11,6 +11,7 @@
 .devenv
 .direnv
 .env
+.env.test
 .idea
 reports
 .phpunit.cache
